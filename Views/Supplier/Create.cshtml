@@ -1,0 +1,12 @@
+﻿@model WebApplication2.Models.Supplier
+ 
+<h2>Додавання постачальника</h2>
+<form asp-action="create" asp-controller="supplier">
+    <p>
+        <label asp-for="Name">Назва</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <input type="submit" value="Створити" />
+    </p>
+</form>

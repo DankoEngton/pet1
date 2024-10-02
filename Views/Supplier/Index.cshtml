@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebApplication2.Models.Supplier>
+ 
+<h2>Список постачальників</h2>
+<p><a asp-action="Create">Додати постачальника</a></p>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,56 @@
+﻿@model Cart
+
+<h2>Кошик</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Продукт</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th>Загалом</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Drug.Name</td>
+                <td>@item.Drug.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Drug.Price * item.Quantity)</td>
+                <td>
+                    <form asp-action="RemoveFromCart" asp-controller="Home">
+                        <input type="hidden" name="drug.Id" value="@item.Drug.Id" />
+                        <button type="submit">Видалити з кошику</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="CreateSale">Продати</a>
+ 
+<h2>Список продуктів</h2>
+<p><a asp-action="Create">Додати продукт</a></p>
+<table class="table">
+    @foreach (var item in Model.Drugs)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Category.Name</td>
+            <td>
+                <form asp-action="AddToCart" method="post">
+            <input type="hidden" name="id" value="@item.Id" />
+            <input type="number" name="quantity" />
+            <input type="submit" value="Додати в кошик" />
+        </form>
+
+
+            </td>
+        </tr>
+        
+    }
+</table>
+

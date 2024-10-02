@@ -1,0 +1,18 @@
+﻿@model WebApplication2.Models.DrugViewModel
+ 
+<h2>Adding drug</h2>
+<form asp-action="create" asp-controller="drug">
+    <p>
+        <label asp-for="Name">Назва</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Price">Ціна</label>
+        <input type="text" asp-for="Price" />
+    </p>
+   <select asp-for="CategoryId" asp-items="@Model.SelectedCategories">Категорія препарату</select>
+   <select asp-for="SupplierId" asp-items="@Model.SelectedSuppliers">Постачальник</select>
+   <select asp-for="WarehouseId" asp-items="@Model.SelectedWarehouses">Склад</select>
+        <input type="submit" value="Створити" />
+    </p>
+</form>

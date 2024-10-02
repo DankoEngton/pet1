@@ -1,0 +1,16 @@
+﻿@model WebApplication2.Models.Warehouse
+ 
+<h2>Додавання складу</h2>
+<form asp-action="create" asp-controller="warehouse">
+    <p>
+        <label asp-for="Name">Назва</label><br />
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Address">Адреса</label><br />
+        <input type="text" asp-for="Address" />
+    </p>
+    <p>
+        <input type="submit" value="Створити" />
+    </p>
+</form>

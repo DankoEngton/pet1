@@ -1,0 +1,62 @@
+﻿@model CategoryViewModel
+ <button><a asp-action="OpenSupplier">Додати постачальника</a></button>
+ <button><a asp-action="OpenCategory">Додати категорію</a></button>
+ <button><a asp-action="OpenWarehouse">Додати склад</a></button>
+ <button><a asp-action="OpenCart">Переглянути кошик</a></button>
+ <h2>Список продуктів</h2>
+ <p><a asp-action="Create">Додати продукт</a></p>
+
+ <form asp-controller="Home" asp-action="Index" method="get">
+    <div class="form-group">
+    <label class="control-label">Ціна продукту, від</label>
+    <input type="number" asp-for="FromPrice" />
+    <label class="control-label">Ціна продукту, до</label>
+    <input type="number" asp-for="ToPrice" value="1000"/>
+    <p></p>
+    <label class="control-label">Вибрати за категорією</label>
+    <select asp-for="CategoryId"  class="form-control" asp-items="@Model.SelectedCategories">
+        <option value="">Всі категорії</option>
+    </select>
+</div>
+    <button type="submit" class="btn btn-primary">Фільтрувати</button>
+</form>
+
+<table>
+    <tr>
+        <th>
+          Назва
+        </th>
+        <th>
+          Ціна
+        </th>
+        <th>
+          Категорія
+        </th>
+        <th>
+            Кількість
+        </th>
+    </tr>
+    @foreach (var item in Model.Drugs)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Category.Name</td>
+            <td>@Model.QuantitiesOnHand.ElementAtOrDefault(Model.Drugs.IndexOf(item))</td>
+            <td>
+                <form asp-action="AddToCart" method="post">
+            <input type="hidden" name="id" value="@item.Id" />
+            <input type="number" name="quantity" />
+            <input type="submit" value="Додати в кошик" />
+        </form>
+                <form asp-action="AddToOrderCart" method="post">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <input type="number" name="quantity" />
+                    <input type="submit" value="Замовити" />
+                </form>
+
+            </td>
+        </tr>
+        
+    }
+</table>

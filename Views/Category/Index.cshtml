@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebApplication2.Models.Category>
+ 
+<h2>Список категорій</h2>
+<p><a asp-action="Create">Додати категорію</a></p>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+        </tr>
+    }
+</table>
